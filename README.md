@@ -115,3 +115,4 @@ docker exec -it lamp_dock_php_1 bash
 でコンテナ内をbashで操作できます。
 
 isssue/cに一行追記
+isssue/dに一行追記
