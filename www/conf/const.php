@@ -1,5 +1,5 @@
 <?php
-
+// ドキュメントルート
 define('MODEL_PATH', $_SERVER['DOCUMENT_ROOT'] . '/../model/');
 define('VIEW_PATH', $_SERVER['DOCUMENT_ROOT'] . '/../view/');
 
@@ -8,6 +8,7 @@ define('IMAGE_PATH', '/assets/images/');
 define('STYLESHEET_PATH', '/assets/css/');
 define('IMAGE_DIR', $_SERVER['DOCUMENT_ROOT'] . '/assets/images/' );
 
+// データベース情報
 define('DB_HOST', 'mysql');
 define('DB_NAME', 'sample');
 define('DB_USER', 'testuser');
@@ -22,12 +23,14 @@ define('CART_URL', '/cart.php');
 define('FINISH_URL', '/finish.php');
 define('ADMIN_URL', '/admin.php');
 
-define('REGEXP_ALPHANUMERIC', '/\A[0-9a-zA-Z]+\z/');
-define('REGEXP_POSITIVE_INTEGER', '/\A([1-9][0-9]*|0)\z/');
+// 正規表現
+define('REGEXP_ALPHANUMERIC', '/\A[0-9a-zA-Z]+\z/'); // 半角英数字のみの正規表現
+define('REGEXP_POSITIVE_INTEGER', '/\A([1-9][0-9]*|0)\z/'); // 半角数字のみの正規表現
 
-
+// ユーザ名文字数制限
 define('USER_NAME_LENGTH_MIN', 6);
 define('USER_NAME_LENGTH_MAX', 100);
+// パスワード文字数制限
 define('USER_PASSWORD_LENGTH_MIN', 6);
 define('USER_PASSWORD_LENGTH_MAX', 100);
 

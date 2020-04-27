@@ -1,15 +1,19 @@
 <?php
 
+// var_dump
 function dd($var){
   var_dump($var);
   exit();
 }
 
+// 指定したURLにとぶ
 function redirect_to($url){
   header('Location: ' . $url);
   exit;
 }
 
+
+// GETの取得の確認
 function get_get($name){
   if(isset($_GET[$name]) === true){
     return $_GET[$name];
@@ -17,6 +21,7 @@ function get_get($name){
   return '';
 }
 
+// POSTの取得の確認
 function get_post($name){
   if(isset($_POST[$name]) === true){
     return $_POST[$name];
