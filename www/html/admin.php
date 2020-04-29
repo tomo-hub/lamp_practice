@@ -23,5 +23,8 @@ if(is_admin($user) === false){
 
 // 全ての商品情報を変数にいれる
 $items = get_all_items($db);
+// トークンの生成を変数にいれる
+$token = get_csrf_token();
+
 // VIEWファイルの読み込み
 include_once VIEW_PATH . '/admin_view.php';

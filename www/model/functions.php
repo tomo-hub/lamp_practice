@@ -46,7 +46,7 @@ function get_session($name){
 function set_session($name, $value){
   $_SESSION[$name] = $value;
 }
-
+// エラー
 function set_error($error){
   $_SESSION['__errors'][] = $error;
 }
@@ -140,7 +140,26 @@ function is_valid_upload_image($image){
   return true;
 }
 
+// エスケープ処理
 function h($h){
   return htmlspecialchars($h, ENT_QUOTES, 'UTF-8');
+}
+
+// トークンの生成
+function get_csrf_token(){
+  // get_random_string()はユーザー定義関数。
+  $token = get_random_string(30);
+  // set_session()はユーザー定義関数。
+  set_session('csrf_token', $token);
+  return $token;
+}
+
+// トークンのチェック
+function is_valid_csrf_token($token){
+  if($token === '') {
+    return false;
+  }
+  // get_session()はユーザー定義関数
+  return $token === get_session('csrf_token');
 }
 

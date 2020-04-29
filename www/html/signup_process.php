@@ -11,6 +11,14 @@ session_start();
 if(is_logined() === true){
   redirect_to(HOME_URL);
 }
+// 受け取った$tokenを変数にいれる
+$csrf_token = get_post('csrf_token');
+// もし$tokenが空でfalseだった場合ログインページへ遷移
+if(is_valid_csrf_token($csrf_token) === false){
+  redirect_to(LOGIN_URL);
+}
+// 保存したセッション変数を削除
+unset($_SESSION['csrf_token']);
 
 // $_POSTで受け取ったユーザ名を変数にいれる
 $name = get_post('name');

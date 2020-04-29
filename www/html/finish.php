@@ -27,5 +27,14 @@ if(purchase_carts($db, $carts) === false){
 // カートの中身の合計数を変数にいれる
 $total_price = sum_carts($carts);
 
+// 受け取った$tokenを変数にいれる
+$csrf_token = get_post('csrf_token');
+// もし$tokenが空でfalseだった場合ログインページへ遷移
+if(is_valid_csrf_token($csrf_token) === false){
+  redirect_to(LOGIN_URL);
+}
+// 保存したセッション変数を削除
+unset($_SESSION['csrf_token']);
+
 // VIEWファイルの読み込み
 include_once '../view/finish_view.php';

@@ -18,5 +18,8 @@ $user = get_login_user($db);
 // 公開している商品情報を変数にいれる
 $items = get_open_items($db);
 
+// トークンの生成を変数にいれる
+$token = get_csrf_token();
+
 // VIEWファイルの読み込み
 include_once VIEW_PATH . 'index_view.php';
