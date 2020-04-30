@@ -20,6 +20,16 @@ $user = get_login_user($db);
 if(is_admin($user) === false){
   redirect_to(LOGIN_URL);
 }
+
+// 受け取った$tokenを変数にいれる
+$csrf_token = get_post('csrf_token');
+// もし$tokenが空でfalseだった場合ログインページへ遷移
+if(is_valid_csrf_token($csrf_token) === false){
+  redirect_to(LOGIN_URL);
+}
+// 保存したセッション変数を削除
+unset($_SESSION['csrf_token']);
+
 // $_POSTで受け取った商品IDを変数にいれる
 $item_id = get_post('item_id');
 // $_POSTで受け取った在庫数を変数にいれる

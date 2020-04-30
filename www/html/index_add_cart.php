@@ -13,6 +13,15 @@ session_start();
 if(is_logined() === false){
   redirect_to(LOGIN_URL);
 }
+// 受け取った$tokenを変数にいれる
+$csrf_token = get_post('csrf_token');
+// もし$tokenが空でfalseだった場合ログインページへ遷移
+if(is_valid_csrf_token($csrf_token) === false){
+  redirect_to(LOGIN_URL);
+}
+// 保存したセッション変数を削除
+unset($_SESSION['csrf_token']);
+
 // データベース接続関数を変数にいれる
 $db = get_db_connect();
 $user = get_login_user($db);

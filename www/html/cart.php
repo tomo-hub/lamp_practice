@@ -21,6 +21,8 @@ $user = get_login_user($db);
 $carts = get_user_carts($db, $user['user_id']);
 // カートの中身の合計数を変数にいれる
 $total_price = sum_carts($carts);
+// トークンの生成を変数にいれる
+$token = get_csrf_token();
 
 // VIEWファイルの読み込み
 include_once VIEW_PATH . 'cart_view.php';
