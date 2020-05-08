@@ -21,6 +21,7 @@ define('LOGOUT_URL', '/logout.php');
 define('HOME_URL', '/index.php');
 define('CART_URL', '/cart.php');
 define('FINISH_URL', '/finish.php');
+define('PURCHASE_HISTORY_URL', '/purchase_history.php');
 define('ADMIN_URL', '/admin.php');
 
 // 正規表現
@@ -34,12 +35,15 @@ define('USER_NAME_LENGTH_MAX', 100);
 define('USER_PASSWORD_LENGTH_MIN', 6);
 define('USER_PASSWORD_LENGTH_MAX', 100);
 
+// ユーザの種類
 define('USER_TYPE_ADMIN', 1);
 define('USER_TYPE_NORMAL', 2);
 
+// 商品名文字数制限
 define('ITEM_NAME_LENGTH_MIN', 1);
 define('ITEM_NAME_LENGTH_MAX', 100);
 
+// ステータス
 define('ITEM_STATUS_OPEN', 1);
 define('ITEM_STATUS_CLOSE', 0);
 
