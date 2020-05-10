@@ -43,6 +43,63 @@ function get_items($db, $is_open = false){
   return fetch_all_query($db, $sql);
 }
 
+// 新着順の商品情報取得
+function get_new_arrival_items($db){
+  $sql = '
+    SELECT
+      item_id, 
+      name,
+      stock,
+      price,
+      image,
+      status
+    FROM
+      items 
+    WHERE 
+    status = 1 
+    ORDER BY created DESC
+  ';
+  return fetch_all_query($db, $sql);
+}
+
+// 価格の安い順の商品情報取得
+function get_cheap_price_items($db){
+  $sql = '
+    SELECT
+      item_id, 
+      name,
+      stock,
+      price,
+      image,
+      status
+    FROM
+      items 
+    WHERE 
+    status = 1 
+    ORDER BY price
+  ';
+  return fetch_all_query($db, $sql);
+}
+
+// 価格の高い順の商品情報取得
+function get_high_price_items($db){
+  $sql = '
+    SELECT
+      item_id, 
+      name,
+      stock,
+      price,
+      image,
+      status
+    FROM
+      items 
+    WHERE 
+    status = 1 
+    ORDER BY price DESC
+  ';
+  return fetch_all_query($db, $sql);
+}
+
 function get_all_items($db){
   return get_items($db);
 }

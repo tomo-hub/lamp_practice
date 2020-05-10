@@ -11,6 +11,18 @@
   
 
   <div class="container">
+
+  <div class="float-right">
+      <form method="get">
+        <select name="sort">
+          <option value="new_arrival" selected>新着順</option>
+          <option value="cheap_price">価格の安い順</option>
+          <option value="high_price">価格の高い順</option>
+        </select>
+        <input type="submit" value="並び替え">
+      </form>
+  </div>
+  
     <h1>商品一覧</h1>
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
