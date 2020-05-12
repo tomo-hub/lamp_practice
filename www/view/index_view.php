@@ -12,18 +12,31 @@
 
   <div class="container">
 
-  <div class="float-right">
-      <form method="get">
-        <select name="sort">
-          <option value="new_arrival" selected>新着順</option>
-          <option value="cheap_price">価格の安い順</option>
-          <option value="high_price">価格の高い順</option>
-        </select>
-        <input type="submit" value="並び替え">
-      </form>
-  </div>
-  
-    <h1>商品一覧</h1>
+    <div class="container clearfix">
+      <div class="float-right">
+        <!--商品の並び替え機能-->
+        <form method="get">
+          <select name="sort">
+            <option value="new_arrival" <?php if($sort === 'new_arrival'){ print h('selected'); } ?>>新着順</option>
+            <option value="cheap_price" <?php if($sort === 'cheap_price'){ print h('selected'); } ?>>価格の安い順</option>
+            <option value="high_price" <?php if($sort === 'high_price'){ print h('selected'); } ?>>価格の高い順</option>
+          </select>
+          <input type="submit" value="並び替え">
+        </form>
+
+        <!--ページネーション-->
+        <?php for($i = 1; $i <= $total_pages; $i++){ 
+           if ($i == $now_page) { 
+               print h($now_page); 
+           } else { ?>
+             <a href='/index.php?page=<?php print h($i); ?>&sort=<?php print h($sort); ?>'><?php print h($i); ?></a>
+        <?php } 
+         } ?>
+        
+      </div>
+      <h1>商品一覧</h1>
+    </div>
+
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
     <div class="card-deck">

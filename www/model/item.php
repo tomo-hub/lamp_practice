@@ -39,12 +39,34 @@ function get_items($db, $is_open = false){
       WHERE status = 1
     ';
   }
-
   return fetch_all_query($db, $sql);
+}
+
+// ページネーションした商品情報取得
+function get_pagenation_items($db, $is_open = false, $limit_page_number){
+  $sql = '
+    SELECT
+      item_id, 
+      name,
+      stock,
+      price,
+      image,
+      status
+    FROM
+      items
+  ';
+  if($is_open === true){
+    $sql .= '
+      WHERE status = 1
+    ';
+  }
+  $sql .='LIMIT :limit_page_number, 8';
+  $params = array(':limit_page_number' => $limit_page_number);
+  return fetch_all_query($db, $sql, $params);
 }
 
 // 新着順の商品情報取得
-function get_new_arrival_items($db){
+function get_new_arrival_items($db,$limit_page_number){
   $sql = '
     SELECT
       item_id, 
@@ -57,13 +79,15 @@ function get_new_arrival_items($db){
       items 
     WHERE 
     status = 1 
-    ORDER BY created DESC
+    ORDER BY created DESC 
+    LIMIT :limit_page_number, 8
   ';
-  return fetch_all_query($db, $sql);
+  $params = array(':limit_page_number' => $limit_page_number);
+  return fetch_all_query($db, $sql,$params);
 }
 
 // 価格の安い順の商品情報取得
-function get_cheap_price_items($db){
+function get_cheap_price_items($db,$limit_page_number){
   $sql = '
     SELECT
       item_id, 
@@ -76,13 +100,15 @@ function get_cheap_price_items($db){
       items 
     WHERE 
     status = 1 
-    ORDER BY price
+    ORDER BY price 
+    LIMIT :limit_page_number, 8
   ';
-  return fetch_all_query($db, $sql);
+  $params = array(':limit_page_number' => $limit_page_number);
+  return fetch_all_query($db, $sql, $params);
 }
 
 // 価格の高い順の商品情報取得
-function get_high_price_items($db){
+function get_high_price_items($db,$limit_page_number){
   $sql = '
     SELECT
       item_id, 
@@ -95,17 +121,23 @@ function get_high_price_items($db){
       items 
     WHERE 
     status = 1 
-    ORDER BY price DESC
+    ORDER BY price DESC 
+    LIMIT :limit_page_number, 8
   ';
-  return fetch_all_query($db, $sql);
+  $params = array(':limit_page_number' => $limit_page_number);
+  return fetch_all_query($db, $sql, $params);
 }
 
 function get_all_items($db){
   return get_items($db);
 }
 
-function get_open_items($db){
+function get_all_open_items($db){
   return get_items($db, true);
+}
+
+function get_open_items($db, $limit_page_number){
+  return get_pagenation_items($db, true, $limit_page_number);
 }
 
 function regist_item($db, $name, $price, $stock, $status, $image){
